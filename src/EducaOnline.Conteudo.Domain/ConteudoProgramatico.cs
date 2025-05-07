@@ -4,14 +4,14 @@ namespace EducaOnline.Conteudo.Domain
 {
     public class ConteudoProgramatico : Entity
     {
-        public string Nome { get; set; }
-        public string Descricao { get; set; }
-        public int Ordem { get; set; }
+        public string Nome { get; private set; }
+        public string Descricao { get; private set; }
+        public int Ordem { get; private set; }
 
         //EF Relationship
-        public Guid AulaId { get; set; }
+        public Guid AulaId { get; private set; }
 
-        public Aula Aula { get; set; }
+        public Aula Aula { get; private set; }
 
 
         //EF Constructor

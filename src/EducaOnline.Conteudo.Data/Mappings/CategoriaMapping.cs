@@ -16,8 +16,8 @@ namespace EducaOnline.Conteudo.Data.Mappings
 
             // 1: N => Categorias : Produtos
             builder.HasMany(c => c.Cursos)
-                .WithOne(c => c.Categoria)
-                .HasForeignKey(c => c.CategoriaId);
+                .WithOne(p => p.Categoria)
+                .HasForeignKey(p => p.CategoriaId);
 
             builder.ToTable("Categorias");
         }

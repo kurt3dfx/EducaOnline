@@ -69,7 +69,10 @@ namespace EducaOnline.Conteudo.Data.Repository
                 .AsNoTracking()                
                 .FirstOrDefaultAsync(c => c.Id == id);
             */
-            return await _context.Cursos.FindAsync(id);
+            var curso = _context.Cursos.Find(id);
+            return curso;
+
+            //return await _context.Cursos.FindAsync(id);
         }
 
         public async Task<IEnumerable<Curso>> ObterTodos()

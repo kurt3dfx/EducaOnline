@@ -8,9 +8,9 @@ namespace EducaOnline.Conteudo.Application.AutoMapper
     {
         public DomainToViewModelMappingProfile()
         {
-            CreateMap<Curso, CursoViewModel>()
+            CreateMap<Curso, CursoViewModel>();
                 //.ForMember(dest => dest.Categoria, opt => opt.MapFrom(src => src.Categoria.Nome))
-                .ForMember(dest => dest.CategoriaId, opt => opt.MapFrom(src => src.Categoria.Id));
+                //.ForMember(dest => dest.CategoriaId, opt => opt.MapFrom(src => src.Categoria.Id));
 
             CreateMap<Categoria, CategoriaViewModel>();
         }

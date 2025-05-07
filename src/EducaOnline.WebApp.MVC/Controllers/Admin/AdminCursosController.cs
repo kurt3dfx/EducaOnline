@@ -43,7 +43,10 @@ namespace EducaOnline.WebApp.MVC.Controllers.Admin
         [HttpGet]
         [Route("editar-curso")]
         public async Task<IActionResult> AtualizarCurso(Guid id)
-        {            
+        {
+            var curso = await _cursoAppService.ObterPorId(id); // Obtenha o curso pelo ID
+            if (curso == null) return NotFound();
+
             return View(await PopularCategorias(await _cursoAppService.ObterPorId(id)));
         }
 
