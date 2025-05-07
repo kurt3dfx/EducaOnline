@@ -1,4 +1,4 @@
-# [Título do Projeto] - Aplicação de Plataforma de Educação Online
+# Aplicação de Plataforma de Educação Online
 
 ## 1. Apresentação
 
