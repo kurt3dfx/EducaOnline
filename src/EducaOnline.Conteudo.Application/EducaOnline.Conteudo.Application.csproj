@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EducaOnline.Conteudo.Data\EducaOnline.Conteudo.Data.csproj" />
+    <ProjectReference Include="..\EducaOnline.Conteudo.Domain\EducaOnline.Conteudo.Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="automapper" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+</Project>
