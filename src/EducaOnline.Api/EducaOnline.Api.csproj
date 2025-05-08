@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EducaOnline.Conteudo.Application\EducaOnline.Conteudo.Application.csproj" />
+    <ProjectReference Include="..\EducaOnline.Conteudo.Data\EducaOnline.Conteudo.Data.csproj" />
+    <ProjectReference Include="..\EducaOnline.Conteudo.Domain\EducaOnline.Conteudo.Domain.csproj" />
+    <ProjectReference Include="..\EducaOnline.Core\EducaOnline.Core.csproj" />
+  </ItemGroup>
+
+</Project>
