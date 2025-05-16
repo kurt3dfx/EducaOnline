@@ -1,85 +1,94 @@
-# [Título do Projeto] - Aplicação de Plataforma de Educação Online
+# Avaliação Técnica - Projeto Plataforma de Educação Online - EducaOnline
 
-## 1. Apresentação
+## Organização do Projeto
 
-Bem-vindo ao repositório do projeto Plataforma de Educação Online. Este projeto é uma entrega do MBA DevXpert Full Stack .NET e é referente ao módulo 3 do curso.
-Consiste em uma plataforma de Educação Online  com múltiplos bounded contexts (BC), aplicando DDD, TDD, CQRS e padrões arquiteturais para gestão eficiente de
-conteúdos educacionais, alunos e processos financeiros. 
+**Pontos positivos:**
+- O projeto está organizado em múltiplas camadas: API (`EducaOnline.Api`), Aplicação (`EducaOnline.Conteudo.Application`), Domínio (`EducaOnline.Conteudo.Domain`) e Infraestrutura (`EducaOnline.Conteudo.Data`).
+- Existe uma separação inicial entre responsabilidades técnica (camada de aplicação, camada de infraestrutura, API).
 
-### Autor(es)
-- Tiago Bittencourt
+**Pontos de melhoria:**
+-  O único contexto parcialmente implementado é o de **Gestão de Conteúdo**. Os contextos de **Gestão de Alunos** e **Pagamentos/Faturamento** não existem.
+- Existe um projeto MVC no repositório, que não foi solicitado no escopo e não possui relação com os fluxos implementados.
 
-## 2. Proposta do Projeto
+---
 
-O projeto consiste em
+## Modelagem de Domínio
 
-- Aplicação MVC Interface web.
-- API RESTful Exposição dos recursos da plataforma para integração com outras aplicações ou desenvolvimento de front-ends alternativos.
-- Autenticação e Autorização Implementação de controle de acesso, diferenciando administradores e usuários comuns.
-- Acesso a Dados Implementação de acesso ao banco de dados através de ORM / repository e service.
+**Pontos positivos:**
+- Foram definidas algumas entidades como `Curso`, `Aula`, `Categoria`, com mapeamento via EF Core.
+- As entidades estão organizadas na camada de domínio e respeitam a estrutura mínima de persistência.
 
-## 3. Tecnologias Utilizadas
+**Pontos de melhoria:**
+- As entidades são anêmicas: `Curso` e `Aula` são apenas estruturas de dados, sem nenhuma lógica de negócio encapsulada.
+- As entidades esperadas nos outros contextos (`Aluno`, `Matrícula`, `Pagamento`, `Certificado`) não foram implementadas.
 
-- Linguagem de Programação C#
-- Frameworks
-  - ASP.NET Core MVC
-  - ASP.NET Core Web API
-  - Entity Framework Core
-- Banco de Dados SQL Server
-- Autenticação e Autorização
-  - ASP.NET Core Identity
-  - JWT (JSON Web Token) para autenticação na API
-- Front-end
-  - Razor PagesViews
-  - HTMLCSS para estilização básica
-- Documentação da API Swagger
+---
 
-## 4. Estrutura do Projeto
+## Casos de Uso e Regras de Negócio
 
-A estrutura do projeto é organizada da seguinte forma (até o presente momento)
+**Pontos positivos:**
+- Há um `CursoAppService` conectado à API, permitindo exposição de dados via endpoint.
 
+**Pontos de melhoria:**
+- O Application Service se limita a mapear dados de DTO para entidade e chamar o repositório, sem conter **qualquer validação ou regra de negócio**.
+- Apenas a leitura de cursos (`GET`) está funcional. Nenhum dos casos de uso do escopo foi implementado:
+  - Cadastro de curso e aula
+  - Matrícula de aluno
+  - Pagamento
+  - Registro de progresso
+  - Geração de certificado
 
-- src
-  - src : pasta com os projetos 
-  - tests: pasta com os testes
-- README.md - Arquivo de Documentação do Projeto
-- FEEDBACK.md - Arquivo para Consolidação dos Feedbacks
-- .gitignore - Arquivo de Ignoração do Git
+---
 
-## 5. Funcionalidades Implementadas
+## Integração entre Contextos
 
-- Controle de cursos
+**Pontos de melhoria:**
+- Não existem múltiplos contextos implementados, logo **não há eventos de domínio**, **mensageria** ou qualquer forma de integração indireta.
 
+---
 
-## 6. Como Executar o Projeto
+## Estratégias Técnicas Suportando DDD
 
-### Pré-requisitos
+**Pontos positivos:**
+- A estrutura do projeto está preparada para separar domínios e seguir práticas como uso de repositórios e mapeamento.
 
-- .NET SDK 8.0 ou superior
-- SQL Server
-- Visual Studio 2022 ou superior (ou qualquer IDE de sua preferência)
-- Git
+**Pontos de melhoria:**
+- Não há uso de CQRS.
+- Só existe um teste de unidade no projeto, que não cobre lógica relevante.
+- O domínio não possui serviços, agregados nem lógica encapsulada.
+- Não há testes de integração, nem testes baseados em comportamento.
 
-### Passos para Execução
+---
 
-1. Clone o Repositório
-   - `git clone httpsgithub.comseu-usuarionome-do-repositorio.git`
-   - `cd nome-do-repositorio`
+## Autenticação e Identidade
 
-2. Configuração do Banco de Dados
-   - No arquivo `appsettings.json`, configure a string de conexão do SQL Server.
-   - Rode o projeto para que a configuração do Seed crie o banco e popule com os dados básicos
+**Pontos de melhoria:**
+- Não há autenticação implementada.
+- Não existe nenhuma forma de controle de usuários, associação de perfil ou diferenciação entre Aluno/Admin.
 
+---
 
-## 7. Instruções de Configuração
+## Execução e Testes
 
+**Pontos de melhoria:**
+- O projeto não possui seed automático de banco de dados.
+- Não há configuração de SQLite, como exigido.
+- Apenas um teste unitário foi encontrado, e não cobre lógica de domínio ou aplicação.
 
-## 8. Documentação da API
+---
 
+## Documentação
 
+**Pontos positivos:**
+- O `README.md` está presente no repositório.
 
-## 9. Avaliação
+**Pontos de melhoria:**
+- O conteúdo do `README.md` está básico e não inclui instruções de execução, uso de banco SQLite, nem descreve os contextos implementados.
 
-- Este projeto é parte de um curso acadêmico e não aceita contribuições externas. 
-- Para feedbacks ou dúvidas utilize o recurso de Issues
-- O arquivo `FEEDBACK.md` é um resumo das avaliações do instrutor e deverá ser modificado apenas por ele.
+---
+
+## Conclusão
+
+O projeto está em estágio inicial de implementação. A estrutura modular foi criada corretamente, mas apenas o contexto de **conteúdo** foi parcialmente iniciado, com **entidades anêmicas** e **sem qualquer caso de uso completo**. O serviço de aplicação não orquestra regras, e os fluxos definidos no escopo não foram implementados. Também não há testes relevantes, nem autenticação funcional, e os demais contextos (alunos, pagamentos) sequer foram iniciados.
+
+Para evoluir esse projeto, é fundamental implementar os fluxos de negócio completos, corrigir a modelagem do domínio com encapsulamento de regras, aplicar testes orientados a comportamento e separar corretamente os contextos conforme o desafio.
